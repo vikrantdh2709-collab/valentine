@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Oseya ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(135deg,#ff4b6e,#ff8fa3);
+overflow:hidden;
+text-align:center;
+color:white;
+}
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:#ff4b6e;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:10;
+}
+
+#intro button{
+padding:15px 30px;
+font-size:20px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+}
+
+.container{
+display:none;
+margin-top:40px;
+}
+
+.card{
+background:white;
+color:black;
+padding:30px;
+border-radius:20px;
+width:300px;
+margin:auto;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+h1{
+color:#ff4b6e;
+}
+
+.slideshow img{
+width:220px;
+height:280px;
+border-radius:15px;
+object-fit:cover;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+margin:10px;
+}
+
+.yes{
+background:#ff4b6e;
+color:white;
+}
+
+.no{
+background:gray;
+color:white;
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+
+#secret{
+display:none;
+margin-top:20px;
+font-size:18px;
+color:#ff4b6e;
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+<h1>💌 A Letter For You Oseya</h1>
+<button onclick="startLove()">Open Letter</button>
+</div>
+
+<audio id="music" loop>
+<source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
+<div class="container" id="main">
+
+<h2>Vikrant ❤️ Oseya</h2>
+<div id="countdown"></div>
+
+<div class="card">
+
+<div class="slideshow">
+<img id="slide" src="photo1.jpg">
+</div>
+
+<h1>Will You Be My Valentine?</h1>
+
+<button class="yes" onclick="yesAnswer()">Yes 💖</button>
+<button class="no" onclick="moveNo()">No 😢</button>
+
+<div id="secret">You are my favourite chapter of life ❤️</div>
+
+</div>
+</div>
+
+<script>
+function startLove(){
+document.getElementById("intro").style.display="none";
+document.getElementById("main").style.display="block";
+document.getElementById("music").play();
+}
+
+const images=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg"];
+let i=0;
+setInterval(()=>{
+document.getElementById("slide").src=images[i];
+i=(i+1)%images.length;
+},3000);
+
+function yesAnswer(){
+alert("You just made Vikrant the happiest ❤️");
+
+for(let i=0;i<50;i++){
+let heart=document.createElement("div");
+heart.innerHTML="❤️";
+heart.classList.add("heart");
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),3000);
+}
+
+setTimeout(()=>{
+window.open("https://wa.me/?text=I said YES ❤️","_blank");
+},2000);
+
+document.getElementById("secret").style.display="block";
+}
+
+function moveNo(){
+let btn=document.querySelector(".no");
+btn.style.position="absolute";
+btn.style.left=Math.random()*window.innerWidth+"px";
+btn.style.top=Math.random()*window.innerHeight+"px";
+}
+
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.innerHTML="❤️";
+heart.classList.add("heart");
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},500);
+
+let valentine=new Date("Feb 14, 2026 00:00:00").getTime();
+
+setInterval(()=>{
+let now=new Date().getTime();
+let diff=valentine-now;
+
+let d=Math.floor(diff/(1000*60*60*24));
+let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+
+document.getElementById("countdown").innerHTML=
+"⏳ Countdown to Our Valentine: "+d+" Days "+h+" Hours";
+},1000);
+</script>
+
+</body>
+</html>
